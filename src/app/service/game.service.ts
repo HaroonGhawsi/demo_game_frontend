@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GameOption } from '../model/GameOption';
+import { GameResponseDto } from '../model/GameResponseDto';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,11 @@ export class GameService {
     return this.http.get<GameOption[]>(this.baseURL);
   }
 
-  addUserSelection(userOption: string): Observable<any> {
+  addUserSelection(userOption: string): Observable<GameResponseDto> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(userOption);
-    return this.http.post(this.baseURL, body, { headers: headers });
+    return this.http.post<GameResponseDto>(this.baseURL, body, {
+      headers: headers,
+    });
   }
 }

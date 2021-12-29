@@ -3,12 +3,15 @@
 </mat-card>
 <mat-card fxLayoutAlign="center">
   <mat-card-content fxLayout="row" fxLayoutGap="20px">
+    {{ initialValues[0] }}
     <button id="stone" mat-fab (click)="selectGameOption('STONE')">
       <mat-icon>fitbit</mat-icon>
     </button>
+    {{ initialValues[1] }}
     <button id="paper" mat-fab (click)="selectGameOption('PAPER')">
       <mat-icon>feed</mat-icon>
     </button>
+    {{ initialValues[2] }}
     <button id="scissor" mat-fab (click)="selectGameOption('SCISSOR')">
       <mat-icon>content_cut</mat-icon>
     </button>
@@ -16,20 +19,20 @@
 </mat-card>
 <mat-card fxLayoutAlign="center">
   <mat-card-content fxLayout="row" fxLayoutGap="20px">
-    <div *ngIf="response.gameResult != ''">
+    <div *ngIf="response.result != ''">
       <mat-card-title style="color: green"
-        >You {{ response.gameResult }}!
-        <mat-icon style="font-size: 50px" *ngIf="response.gameResult === 'WON'"
+        >You {{ response.result }}!
+        <mat-icon style="font-size: 50px" *ngIf="response.result === 'WON'"
           >celebration</mat-icon
         >
         <mat-icon
           style="font-size: 50px; color: red"
-          *ngIf="response.gameResult === 'LOST'"
+          *ngIf="response.result === 'LOST'"
           >mood_bad</mat-icon
         >
       </mat-card-title>
       <mat-card-title style="color: blue"
-        >Your opponents selection {{ response.gameOption }}!
+        >Your opponents selection {{ response.option }}!
       </mat-card-title>
     </div>
   </mat-card-content>

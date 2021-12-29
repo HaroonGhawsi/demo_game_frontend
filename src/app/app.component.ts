@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameOption } from './model/GameOption';
 import { GameResponseDto } from './model/GameResponseDto';
-import { GameResult } from './model/GameResult';
 import { GameService } from './service/game.service';
 
 @Component({
@@ -12,11 +11,12 @@ import { GameService } from './service/game.service';
 export class AppComponent implements OnInit {
   title = 'game-frontend';
   response: GameResponseDto;
+  initialValues: GameOption[] = [];
 
   constructor(private service: GameService) {
     this.response = {
-      gameOption: '',
-      gameResult: '',
+      option: '',
+      result: '',
     };
   }
 
@@ -25,17 +25,18 @@ export class AppComponent implements OnInit {
   }
 
   private getGameOptions() {
-    this.service.getGameOptions().subscribe((data) => {});
+    this.service.getGameOptions().subscribe((data) => {
+      this.initialValues = data;
+    });
   }
 
   selectGameOption(gameOption: string) {
     if (gameOption) {
-      this.service.addUserSelection(gameOption).subscribe((data) => {
-        this.response = {
-          gameOption: data.option,
-          gameResult: data.result,
-        };
-      });
+      this.service
+        .addUserSelection(gameOption)
+        .subscribe((data: GameResponseDto) => {
+          this.response = data;
+        });
     }
   }
 }
