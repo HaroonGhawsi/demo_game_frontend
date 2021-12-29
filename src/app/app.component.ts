@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameOption } from './model/GameOption';
 import { GameResponseDto } from './model/GameResponseDto';
-import { GameResult } from './model/GameResult';
 import { GameService } from './service/game.service';
 
 @Component({
@@ -12,6 +11,7 @@ import { GameService } from './service/game.service';
 export class AppComponent implements OnInit {
   title = 'game-frontend';
   response: GameResponseDto;
+  initialValues: GameOption[] = [];
 
   constructor(private service: GameService) {
     this.response = {
@@ -25,7 +25,9 @@ export class AppComponent implements OnInit {
   }
 
   private getGameOptions() {
-    this.service.getGameOptions().subscribe((data) => {});
+    this.service.getGameOptions().subscribe((data) => {
+      this.initialValues = data;
+    });
   }
 
   selectGameOption(gameOption: string) {

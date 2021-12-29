@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { GameOption } from '../model/GameOption';
-import { GameResult } from '../model/GameResult';
 import { GameResponseDto } from '../model/GameResponseDto';
 
 @Injectable({
