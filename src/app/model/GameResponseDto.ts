@@ -1,5 +1,4 @@
-
 export interface GameResponseDto {
-  gameOption: string;
-  gameResult: string;
+  option: string;
+  result: string;
 }

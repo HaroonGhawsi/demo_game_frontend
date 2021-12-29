@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
 
   constructor(private service: GameService) {
     this.response = {
-      gameOption: '',
-      gameResult: '',
+      option: '',
+      result: '',
     };
   }
 
@@ -30,12 +30,11 @@ export class AppComponent implements OnInit {
 
   selectGameOption(gameOption: string) {
     if (gameOption) {
-      this.service.addUserSelection(gameOption).subscribe((data) => {
-        this.response = {
-          gameOption: data.option,
-          gameResult: data.result,
-        };
-      });
+      this.service
+        .addUserSelection(gameOption)
+        .subscribe((data: GameResponseDto) => {
+          this.response = data;
+        });
     }
   }
 }
